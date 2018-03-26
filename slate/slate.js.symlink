@@ -1,0 +1,49 @@
+// Monitors
+var monHP27s  = "2560x1440";
+var monLaptop = "1920x1200";
+
+var fullscreen = S.op("move", {"x" : "screenOriginX", "y" : "screenOriginY", "width" : "screenSizeX", "height" : "screenSizeY"})
+var pushRight = S.op("push", { "direction" : "right", "style" : "bar-resize:screenSizeX/2" })
+var pushLeft = S.op("push", { "direction" : "left", "style" : "bar-resize:screenSizeX/2" })
+var pushUp = S.op("push", { "direction" : "up", "style" : "bar-resize:screenSizeY/2" })
+var pushDown = S.op("push", { "direction" : "down", "style" : "bar-resize:screenSizeY/2" })
+var putInMainContent = S.op("move", {
+  "screen" : monHP27s,
+  "x" : "screenOriginX+(2*screenSizeX/12)",
+  "y" : "screenOriginY",
+  "width" : "8*screenSizeX/12",
+  "height" : "screenSizeY"
+});
+
+S.bnda({
+  "right:ctrl;cmd" : pushRight,
+  "left:ctrl;cmd" : pushLeft,
+  "up:ctrl;cmd" : fullscreen,
+  "down:ctrl;cmd": pushDown,
+  "pad2:ctrl;cmd" : putInMainContent,
+});
+
+var HP27sMonitorLayout = S.layout("hp27sMonitor", {
+  "Google Chrome" : {
+    "operations" : [putInMainContent],
+    "repeat" : true
+  },
+  "Microsoft Outlook" : {
+    "operations" : [putInMainContent],
+    "repeat" : true
+  },
+  "Microsoft Teams" : {
+    "operations" : [putInMainContent],
+    "repeat" : true
+  },
+  "Skype for Business" : {
+    "operations" : [putInMainContent],
+    "repeat" : true
+  },
+});
+
+// bind the layout to activate when I press Control and the Enter key on the number pad.
+slate.bind("padEnter:ctrl", slate.operation("layout", { "name" : HP27sMonitorLayout }));
+
+
+S.default(["2560x1440"], HP27sMonitorLayout);

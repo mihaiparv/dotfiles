@@ -1,0 +1,23 @@
+// Place your settings in this file to overwrite the default settings
+{
+  "editor.cursorStyle": "block",
+  "editor.renderIndentGuides": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.renderControlCharacters": true,
+  "editor.scrollBeyondLastLine": false,
+  "editor.tabSize": 2,
+  "editor.wrappingIndent": "same",
+  "editor.mouseWheelZoom": true,
+  "files.autoSave": "afterDelay",
+  "files.associations": {
+    "Jenkinsfile": "groovy",
+    "Vagrantfile": "ruby"
+  },
+  "git.confirmSync": false,
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Solarized Dark",
+  "extensions.ignoreRecommendations": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "typescript.check.npmIsInstalled": false,
+  "git.autofetch": true,
+}
