@@ -28,7 +28,7 @@ if [[ $? -eq 0 ]];then
       mv $HOME/Library/Application\ Support/Code/User/settings.json $HOME/Library/Application\ Support/Code/User/settings.backup.json
       echo "Your previous config has been saved to: $HOME/Library/Application Support/Code/User/settings.backup.json"
     fi
-    ln -s ./settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+    ln -s $HOME/.dotfiles/visual-studio-code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 
     echo "New user config has been linked. Please restart your VSC."
   else
