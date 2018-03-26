@@ -4,7 +4,7 @@ code -v > /dev/null
 if [[ $? -eq 0 ]];then
   read -r -p "Do you want to install VSC extensions? [y|N] " configresponse
   if [[ $configresponse =~ ^(y|yes|Y) ]];then
-    ok "Installing extensions please wait..."
+    info "Installing extensions please wait..."
     code --install-extension dhoeric.ansible-vault
     code --install-extension donjayamanne.githistory
     code --install-extension joaompinto.asciidoctor-vscode
@@ -13,26 +13,26 @@ if [[ $? -eq 0 ]];then
     code --install-extension PeterJausovec.vscode-docker
     code --install-extension vscoss.vscode-ansible
 
-    ok "Extensions for VSC have been installed. Please restart your VSC."
+    info "Extensions for VSC have been installed. Please restart your VSC."
   else
-    ok "Skipping extension install.";
+    info "Skipping extension install.";
   fi
 
   read -r -p "Do you want to overwrite user config? [y|N] " configresponse
   if [[ $configresponse =~ ^(y|yes|Y) ]];then
     read -r -p "Do you want to back up your current user config? [Y|n] " backupresponse
     if [[ $backupresponse =~ ^(n|no|N) ]];then
-      ok "Skipping user config save."
+      info "Skipping user config save."
     else
       mkdir -p $HOME/Library/Application\ Support/Code/User
       mv $HOME/Library/Application\ Support/Code/User/settings.json $HOME/Library/Application\ Support/Code/User/settings.backup.json
-      ok "Your previous config has been saved to: $HOME/Library/Application Support/Code/User/settings.backup.json"
+      info "Your previous config has been saved to: $HOME/Library/Application Support/Code/User/settings.backup.json"
     fi
     ln -s ./settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 
-    ok "New user config has been linked. Please restart your VSC."
+    info "New user config has been linked. Please restart your VSC."
   else
-    ok "Skipping user config overwriting.";
+    info "Skipping user config overwriting.";
   fi
 else
   error "It looks like the command 'code' isn't accessible."
