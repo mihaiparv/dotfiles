@@ -1,0 +1,3 @@
+[submodule "preferences"]
+	path = preferences
+	url = git@bitbucket.org:mihaiparv/dotfiles-preferences.git
