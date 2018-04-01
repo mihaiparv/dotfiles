@@ -114,6 +114,10 @@ install_dotfiles () {
   done
 }
 
+# First thing install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Install dotfiles
 install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.
