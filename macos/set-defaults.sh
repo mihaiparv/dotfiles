@@ -587,19 +587,4 @@ defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
-###############################################################################
-# Kill affected applications                                                  #
-###############################################################################
-
-for app in "Activity Monitor" \
-	"cfprefsd" \
-	"Dock" \
-	"Finder" \
-	"Google Chrome" \
-	"Photos" \
-	"Safari" \
-	"SystemUIServer" \
-	"Terminal" ; do
-	killall "${app}" &> /dev/null
-done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
