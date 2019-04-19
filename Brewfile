@@ -1,5 +1,6 @@
 cask_args appdir: '/Applications'
 
+tap 'AdoptOpenJDK/openjdk'
 tap 'homebrew/bundle'
 tap 'homebrew/cask-drivers'
 tap 'homebrew/cask-fonts'
