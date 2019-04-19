@@ -3,7 +3,6 @@ cask_args appdir: '/Applications'
 tap 'homebrew/bundle'
 tap 'homebrew/cask-drivers'
 tap 'homebrew/cask-fonts'
-tap 'homebrew/cask-versions'
 tap 'hudochenkov/sshpass'
 
 brew 'coreutils'
