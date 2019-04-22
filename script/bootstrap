@@ -54,29 +54,29 @@ restore_vs_code_prefs () {
     info 'Restoring VS Code settings'
     link_file $HOME/.dotfiles/visual-studio-code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
   else
-    error "It looks like the command 'code' isn't accessible."
-    error "Please make sure you have Visual Studio Code installed"
-    error "And that you executed this procedure: https://code.visualstudio.com/docs/setup/mac"
+    fail "It looks like the command 'code' isn't accessible."
+    fail "Please make sure you have Visual Studio Code installed"
+    fail "And that you executed this procedure: https://code.visualstudio.com/docs/setup/mac"
   fi
 }
 
 # First thing install oh-my-zsh
-#sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Install dotfiles
-#install_dotfiles
+install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.
-# if [ "$(uname -s)" == "Darwin" ]
-# then
-#   info "installing dependencies"
-#   if source bin/dot | while read -r data; do info "$data"; done
-#   then
-#     success "dependencies installed"
-#   else
-#     fail "error installing dependencies"
-#   fi
-# fi
+if [ "$(uname -s)" == "Darwin" ]
+then
+  info "installing dependencies"
+  if source bin/dot | while read -r data; do info "$data"; done
+  then
+    success "dependencies installed"
+  else
+    fail "error installing dependencies"
+  fi
+fi
 
 # Restore preferences for various apps
 restore_iterm2_prefs
