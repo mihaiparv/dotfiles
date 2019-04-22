@@ -5,102 +5,11 @@
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 
+. $DOTFILES_ROOT/script/lib/functions.sh
+
 set -e
 
 echo ''
-
-info () {
-  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
-}
-
-user () {
-  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
-}
-
-success () {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
-}
-
-fail () {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
-  echo ''
-  exit
-}
-
-link_file () {
-  local src=$1 dst=$2
-
-  local overwrite= backup= skip=
-  local action=
-
-  if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
-  then
-
-    if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
-    then
-
-      local currentSrc="$(readlink $dst)"
-
-      if [ "$currentSrc" == "$src" ]
-      then
-
-        skip=true;
-
-      else
-
-        user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
-        [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
-        read -n 1 action
-
-        case "$action" in
-          o )
-            overwrite=true;;
-          O )
-            overwrite_all=true;;
-          b )
-            backup=true;;
-          B )
-            backup_all=true;;
-          s )
-            skip=true;;
-          S )
-            skip_all=true;;
-          * )
-            ;;
-        esac
-
-      fi
-
-    fi
-
-    overwrite=${overwrite:-$overwrite_all}
-    backup=${backup:-$backup_all}
-    skip=${skip:-$skip_all}
-
-    if [ "$overwrite" == "true" ]
-    then
-      rm -rf "$dst"
-      success "removed $dst"
-    fi
-
-    if [ "$backup" == "true" ]
-    then
-      mv "$dst" "${dst}.backup"
-      success "moved $dst to ${dst}.backup"
-    fi
-
-    if [ "$skip" == "true" ]
-    then
-      success "skipped $src"
-    fi
-  fi
-
-  if [ "$skip" != "true" ]  # "false" or empty
-  then
-    ln -s "$1" "$2"
-    success "linked $1 to $2"
-  fi
-}
 
 install_dotfiles () {
   info 'installing dotfiles'
@@ -114,23 +23,64 @@ install_dotfiles () {
   done
 }
 
+restore_iterm2_prefs () {
+  info 'restoring iTerm2 DynamicProfiles'
+
+  local overwrite_all=false backup_all=false skip_all=false
+  link_file $DOTFILES_ROOT/preferences/symlink/iTerm2/DynamicProfiles ~/Library/Application\ Support/iTerm2/DynamicProfiles
+}
+
+restore_vs_code_prefs () {
+  code -v > /dev/null
+  if [[ $? -eq 0 ]];then
+    info 'Installing VS Code extensions'
+    read -r -p "Do you want to install VSC extensions? [y|N] " configresponse
+    if [[ $configresponse =~ ^(y|yes|Y) ]];then
+      echo "Installing extensions please wait..."
+      code --install-extension dhoeric.ansible-vault
+      code --install-extension donjayamanne.githistory
+      code --install-extension eamodio.gitlens
+      code --install-extension joaompinto.asciidoctor-vscode
+      code --install-extension HookyQR.beautify
+      code --install-extension mauve.terraform
+      code --install-extension PeterJausovec.vscode-docker
+      code --install-extension vscoss.vscode-ansible
+
+      success "Extensions for VSC have been installed. Please restart your VSC."
+    else
+      info "Skipping extension install.";
+    fi
+
+    info 'Restoring VS Code settings'
+    link_file $HOME/.dotfiles/visual-studio-code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+  else
+    error "It looks like the command 'code' isn't accessible."
+    error "Please make sure you have Visual Studio Code installed"
+    error "And that you executed this procedure: https://code.visualstudio.com/docs/setup/mac"
+  fi
+}
+
 # First thing install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Install dotfiles
-install_dotfiles
+#install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.
-if [ "$(uname -s)" == "Darwin" ]
-then
-  info "installing dependencies"
-  if source bin/dot | while read -r data; do info "$data"; done
-  then
-    success "dependencies installed"
-  else
-    fail "error installing dependencies"
-  fi
-fi
+# if [ "$(uname -s)" == "Darwin" ]
+# then
+#   info "installing dependencies"
+#   if source bin/dot | while read -r data; do info "$data"; done
+#   then
+#     success "dependencies installed"
+#   else
+#     fail "error installing dependencies"
+#   fi
+# fi
+
+# Restore preferences for various apps
+restore_iterm2_prefs
+restore_vs_code_prefs
 
 echo ''
 echo '  All installed!'
