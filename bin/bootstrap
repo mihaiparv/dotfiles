@@ -50,6 +50,7 @@ restore_vs_code_prefs () {
     fi
 
     info 'Restoring VS Code settings'
+    local overwrite_all=false backup_all=false skip_all=false
     link_file $HOME/.dotfiles/visual-studio-code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
   else
     fail "It looks like the command 'code' isn't accessible."
