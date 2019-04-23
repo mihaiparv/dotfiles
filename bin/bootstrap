@@ -10,10 +10,7 @@ DOTFILES_ROOT=$(pwd -P)
 set -e
 
 install_dotfiles () {
-  info 'installing dotfiles'
-
   local overwrite_all=false backup_all=false skip_all=false
-
   for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
   do
     dst="$HOME/.$(basename "${src%.*}")"
@@ -71,29 +68,32 @@ info "› brew bundle"
 brew bundle
 
 # find the installers and run them iteratively
-find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
+find . -name install.sh | while read installer ; do info "› ${installer}" ; sh -c "${installer}" ; done
 
-# Set macOS defaults
+info "› $DOTFILES_ROOT/macos/set-defaults.sh"
 $DOTFILES_ROOT/macos/set-defaults.sh
 
-# Add brew installed zsh as standard shell
+info "› Configuring brew zsh as standard shell"
 grep "/usr/local/bin/zsh" /etc/shells || echo /usr/local/bin/zsh | sudo tee -a /etc/shells
 
-# Install the Solarized Dark theme for iTerm
+info "› Installing Solarized Dark theme for iTerm2"
 open "$DOTFILES_ROOT/init/Solarized Dark.itermcolors"
 
-# Install oh-my-zsh
+info "› Installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Install dotfiles
+info "› Installing dotfiles"
 install_dotfiles
 
-# Install Powerlevel9k theme for oh-my-zsh
+info "› Installing Powerlevel9k theme for oh-my-zsh"
 [ ! -d ~/.oh-my-zsh/custom/themes/powerlevel9k ] && git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
-# Restore preferences for various apps
+info "› Restoring iTerm2 preferences"
 restore_iterm2_prefs
+
+info "› Restoring VS Code preferences"
 restore_vs_code_prefs
 
 echo ''
-echo '  All installed!'
+success 'All installed!'
