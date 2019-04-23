@@ -79,8 +79,9 @@ $DOTFILES_ROOT/macos/set-defaults.sh
 # Install the Solarized Dark theme for iTerm
 open "$DOTFILES_ROOT/init/Solarized Dark.itermcolors"
 
-# Install oh-my-zsh
+# Install oh-my-zsh and change the shell to the brew installed zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+chsh -s /usr/local/bin/zsh
 
 # Install dotfiles
 install_dotfiles
