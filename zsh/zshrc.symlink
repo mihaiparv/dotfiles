@@ -10,6 +10,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PIP_REQUIRE_VIRTUALENV="true"
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
