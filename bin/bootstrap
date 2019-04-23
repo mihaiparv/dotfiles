@@ -76,12 +76,14 @@ find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
 # Set macOS defaults
 $DOTFILES_ROOT/macos/set-defaults.sh
 
+# Add brew installed zsh as standard shell
+grep "/usr/local/bin/zsh" /etc/shells || echo /usr/local/bin/zsh | sudo tee -a /etc/shells
+
 # Install the Solarized Dark theme for iTerm
 open "$DOTFILES_ROOT/init/Solarized Dark.itermcolors"
 
-# Install oh-my-zsh and change the shell to the brew installed zsh
+# Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-chsh -s /usr/local/bin/zsh
 
 # Install dotfiles
 install_dotfiles
