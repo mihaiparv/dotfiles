@@ -5,7 +5,7 @@
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 
-. $DOTFILES_ROOT/script/lib/functions.sh
+. $DOTFILES_ROOT/bin/lib/functions.sh
 
 set -e
 
