@@ -84,6 +84,9 @@ $DOTFILES_ROOT/macos/set-defaults.sh
 # Install the Solarized Dark theme for iTerm
 open "$DOTFILES_ROOT/init/Solarized Dark.itermcolors"
 
+# Install Powerlevel9k theme for oh-my-zsh
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
 # Restore preferences for various apps
 restore_iterm2_prefs
 restore_vs_code_prefs
