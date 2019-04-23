@@ -9,8 +9,6 @@ DOTFILES_ROOT=$(pwd -P)
 
 set -e
 
-echo ''
-
 install_dotfiles () {
   info 'installing dotfiles'
 
@@ -66,17 +64,25 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # Install dotfiles
 install_dotfiles
 
-# If we're on a Mac, let's install and setup homebrew.
-if [ "$(uname -s)" == "Darwin" ]
-then
-  info "installing dependencies"
-  if source bin/dot | while read -r data; do info "$data"; done
-  then
-    success "dependencies installed"
-  else
-    fail "error installing dependencies"
-  fi
-fi
+# Install homebrew
+$DOTFILES_ROOT/homebrew/install.sh 2>&1
+
+# Upgrade homebrew
+info "› brew update"
+brew update
+
+# Run Homebrew through the Brewfile
+info "› brew bundle"
+brew bundle
+
+# find the installers and run them iteratively
+find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
+
+# Set macOS defaults
+$DOTFILES_ROOT/macos/set-defaults.sh
+
+# Install the Solarized Dark theme for iTerm
+open "$DOTFILES_ROOT/init/Solarized Dark.itermcolors"
 
 # Restore preferences for various apps
 restore_iterm2_prefs
