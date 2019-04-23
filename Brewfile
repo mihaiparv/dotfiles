@@ -26,6 +26,7 @@ brew 'terraform'
 brew 'tig'
 brew 'unrar'
 brew 'wget'
+brew 'zsh'
 
 cask 'commander-one'
 cask 'docker'
