@@ -7,6 +7,10 @@ DOTFILES_ROOT=$(pwd -P)
 
 . $DOTFILES_ROOT/bin/lib/functions.sh
 
+configure () {
+  local overwrite_all=false backup_all=false skip_all=false
+  copy_file $DOTFILES_ROOT/preferences/transform/com.eltima.cmd1.plist ~/Library/Preferences/com.eltima.cmd1.plist
+}
+
 info "› Restoring Commander One preferences"
-local overwrite_all=false backup_all=false skip_all=false
-copy_file $DOTFILES_ROOT/preferences/transform/com.eltima.cmd1.plist ~/Library/Preferences/com.eltima.cmd1.plist
+configure
