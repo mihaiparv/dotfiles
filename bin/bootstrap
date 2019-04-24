@@ -18,12 +18,6 @@ install_dotfiles () {
   done
 }
 
-# Install homebrew
-$DOTFILES_ROOT/homebrew/install.sh 2>&1
-
-info "› Disable Gatekeeper to ensure all apps install without issues"
-sudo spctl --master-disable
-
 # find the installers and run them iteratively
 find . -name install.sh | while read installer ; do info "› ${installer}" ; sh -c "${installer}" ; done
 
@@ -34,9 +28,6 @@ brew update
 # Run Homebrew through the Brewfile
 info "› brew bundle"
 brew bundle
-
-info "› Re-enable Gatekeeper"
-sudo spctl --master-enable
 
 # Install dotfiles
 info "› Installing dotfiles"
