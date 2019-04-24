@@ -34,7 +34,7 @@ info "› Installing dotfiles"
 install_dotfiles
 
 # find the configuration scripts and run them iteratively
-find $DOTFILES_ROOT -name configure.sh | while read configuration ; do info "› ${configuration}" ; sh -c "${configuration}" ; done
+find $DOTFILES_ROOT -name configure.sh | while read script ; do info "› ${script}" ; sh -c "${script}" ; done
 
 echo ''
 success 'All installed!'
