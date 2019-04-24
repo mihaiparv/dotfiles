@@ -19,7 +19,7 @@ install_dotfiles () {
 }
 
 # find the installers and run them iteratively
-find . -name install.sh | while read installer ; do info "› ${installer}" ; sh -c "${installer}" ; done
+find $DOTFILES_ROOT -name install.sh | while read installer ; do info "› ${installer}" ; sh -c "${installer}" ; done
 
 # Upgrade homebrew
 info "› brew update"
@@ -34,7 +34,7 @@ info "› Installing dotfiles"
 install_dotfiles
 
 # find the configuration scripts and run them iteratively
-find . -name configure.sh | while read configuration ; do info "› ${configuration}" ; sh -c "${configuration}" ; done
+find $DOTFILES_ROOT -name configure.sh | while read configuration ; do info "› ${configuration}" ; sh -c "${configuration}" ; done
 
 echo ''
 success 'All installed!'
