@@ -18,46 +18,14 @@ install_dotfiles () {
   done
 }
 
-restore_iterm2_prefs () {
-  info 'restoring iTerm2 DynamicProfiles'
-
-  local overwrite_all=false backup_all=false skip_all=false
-  link_file $DOTFILES_ROOT/preferences/symlink/iTerm2/DynamicProfiles ~/Library/Application\ Support/iTerm2/DynamicProfiles
-}
-
-restore_vs_code_prefs () {
-  code -v > /dev/null
-  if [[ $? -eq 0 ]];then
-    info 'Installing VS Code extensions'
-    read -r -p "Do you want to install VSC extensions? [y|N] " configresponse
-    if [[ $configresponse =~ ^(y|yes|Y) ]];then
-      echo "Installing extensions please wait..."
-      code --install-extension dhoeric.ansible-vault
-      code --install-extension donjayamanne.githistory
-      code --install-extension eamodio.gitlens
-      code --install-extension joaompinto.asciidoctor-vscode
-      code --install-extension HookyQR.beautify
-      code --install-extension mauve.terraform
-      code --install-extension PeterJausovec.vscode-docker
-      code --install-extension vscoss.vscode-ansible
-
-      success "Extensions for VSC have been installed. Please restart your VSC."
-    else
-      info "Skipping extension install.";
-    fi
-
-    info 'Restoring VS Code settings'
-    local overwrite_all=false backup_all=false skip_all=false
-    link_file $HOME/.dotfiles/visual-studio-code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
-  else
-    fail "It looks like the command 'code' isn't accessible."
-    fail "Please make sure you have Visual Studio Code installed"
-    fail "And that you executed this procedure: https://code.visualstudio.com/docs/setup/mac"
-  fi
-}
-
 # Install homebrew
 $DOTFILES_ROOT/homebrew/install.sh 2>&1
+
+info "› Disable Gatekeeper to ensure all apps install without issues"
+sudo spctl --master-disable
+
+# find the installers and run them iteratively
+find . -name install.sh | while read installer ; do info "› ${installer}" ; sh -c "${installer}" ; done
 
 # Upgrade homebrew
 info "› brew update"
@@ -67,33 +35,15 @@ brew update
 info "› brew bundle"
 brew bundle
 
-# find the installers and run them iteratively
-find . -name install.sh | while read installer ; do info "› ${installer}" ; sh -c "${installer}" ; done
-
-info "› $DOTFILES_ROOT/macos/set-defaults.sh"
-$DOTFILES_ROOT/macos/set-defaults.sh
-
-info "› Configuring brew zsh as standard shell"
-grep "/usr/local/bin/zsh" /etc/shells || echo /usr/local/bin/zsh | sudo tee -a /etc/shells
-
-info "› Installing Solarized Dark theme for iTerm2"
-open "$DOTFILES_ROOT/init/Solarized Dark.itermcolors"
-
-info "› Installing oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+info "› Re-enable Gatekeeper"
+sudo spctl --master-enable
 
 # Install dotfiles
 info "› Installing dotfiles"
 install_dotfiles
 
-info "› Installing Powerlevel9k theme for oh-my-zsh"
-[ ! -d ~/.oh-my-zsh/custom/themes/powerlevel9k ] && git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-
-info "› Restoring iTerm2 preferences"
-restore_iterm2_prefs
-
-info "› Restoring VS Code preferences"
-restore_vs_code_prefs
+# find the configuration scripts and run them iteratively
+find . -name configure.sh | while read configuration ; do info "› ${configuration}" ; sh -c "${configuration}" ; done
 
 echo ''
 success 'All installed!'

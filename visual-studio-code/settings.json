@@ -10,8 +10,8 @@
   "editor.mouseWheelZoom": true,
   "files.autoSave": "afterDelay",
   "files.associations": {
-    "Jenkinsfile": "groovy",
-    "Vagrantfile": "ruby"
+      "Jenkinsfile": "groovy",
+      "Vagrantfile": "ruby"
   },
   "git.confirmSync": false,
   "window.zoomLevel": 0,
@@ -19,5 +19,13 @@
   "extensions.ignoreRecommendations": false,
   "workbench.startupEditor": "newUntitledFile",
   "typescript.check.npmIsInstalled": false,
-  "git.autofetch": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.renderSideBySide": true,
+  "editor.suggestSelection": "first",
+  "workbench.sideBar.location": "left",
+  "editor.fontLigatures": true,
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.fontFamily": "Hack Nerd Font",
+  "terminal.integrated.rightClickBehavior": "copyPaste",
+  "terminal.integrated.copyOnSelection": true
 }
