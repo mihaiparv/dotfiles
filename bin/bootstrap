@@ -19,7 +19,7 @@ install_dotfiles () {
 }
 
 # find the installers and run them iteratively
-find $DOTFILES_ROOT -name install.sh -exec info "› {}" \; -exec {} \;
+find $DOTFILES_ROOT -name install.sh -exec sh -c 'info "› {}"' \; -exec {} \;
 
 # Upgrade homebrew
 info "› brew update"
@@ -30,7 +30,7 @@ info "› brew bundle"
 brew bundle
 
 # find the configuration scripts and run them iteratively
-find $DOTFILES_ROOT -name configure.sh -exec info "› {}" \; -exec {} \;
+find $DOTFILES_ROOT -name configure.sh -exec sh -c 'info "› {}"' \; -exec {} \;
 
 # Install dotfiles
 info "› Installing dotfiles"

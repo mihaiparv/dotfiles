@@ -156,3 +156,10 @@ copy_file () {
     success "copied $1 to $2"
   fi
 }
+
+export -f info
+export -f user
+export -f success
+export -f fail
+export -f link_file
+export -f copy_file
