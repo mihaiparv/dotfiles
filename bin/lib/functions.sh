@@ -157,9 +157,66 @@ copy_file () {
   fi
 }
 
+read_from_lastpass_to_file () {
+  local lpass_entry_name=$1
+  local lpass_entry_field=$2
+  local dst=$3
+  local mode=$4
+
+  local overwrite= backup= skip=
+  local action=
+
+  if [ -f "$dst" ]
+  then
+    user "File already exists: $dst, what do you want to do?\n\
+    [s]kip, [o]verwrite, [b]ackup?"
+    read -n 1 action
+
+    case "$action" in
+      o )
+        overwrite=true;;
+      b )
+        backup=true;;
+      s )
+        skip=true;;
+      * )
+        ;;
+    esac
+
+    if [ "$overwrite" == "true" ]
+    then
+      rm -rf "$dst"
+      success "removed $dst"
+    fi
+
+    if [ "$backup" == "true" ]
+    then
+      mv "$dst" "${dst}.backup"
+      success "moved $dst to ${dst}.backup"
+    fi
+
+    if [ "$skip" == "true" ]
+    then
+      success "skipped $src"
+    fi
+  fi
+
+  if [ "$skip" != "true" ]  # "false" or empty
+  then
+    local content=$(lpass show "$lpass_entry_name" "$lpass_entry_field" -q)
+    if [ ! -z "$content" ]
+    then
+      echo "$content" > $dst
+      chmod $mode $dst
+      success "Content copied from Lastpass '$lpass_entry_name' to '$dst' and permissions set to '$mode'"
+    fi
+  fi
+}
+
 export -f info
 export -f user
 export -f success
 export -f fail
 export -f link_file
 export -f copy_file
+export -f read_from_lastpass_to_file
