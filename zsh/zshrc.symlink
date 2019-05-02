@@ -126,3 +126,9 @@ eval "$(jenv init -)"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Lastpass CLI environment configuration
+#
+# Environment variable to set an alternative number of seconds for the agent to quit.
+# Set 0 to never quit, currently set to 24h
+LPASS_AGENT_TIMEOUT=86400
