@@ -131,4 +131,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 #
 # Environment variable to set an alternative number of seconds for the agent to quit.
 # Set 0 to never quit, currently set to 24h
-LPASS_AGENT_TIMEOUT=86400
+export LPASS_AGENT_TIMEOUT=86400
