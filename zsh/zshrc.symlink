@@ -30,7 +30,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 DEFAULT_USER=$USER
 POWERLEVEL9K_MODE="nerdfont-fontconfig"
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context virtualenv custom_lastpass_status dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir custom_lastpass_status virtualenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time)
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
