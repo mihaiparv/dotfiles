@@ -6,6 +6,7 @@ tap 'homebrew/cask-drivers'
 tap 'homebrew/cask-fonts'
 tap 'hudochenkov/sshpass'
 
+brew 'azure-cli'
 brew 'coreutils'
 brew 'git'
 brew 'git-lfs'

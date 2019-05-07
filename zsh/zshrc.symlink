@@ -126,3 +126,7 @@ eval "$(jenv init -)"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# custom bash completions
+autoload bashcompinit && bashcompinit
+source /usr/local/etc/bash_completion.d/az
