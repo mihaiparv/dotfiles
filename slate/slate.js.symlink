@@ -24,7 +24,15 @@ S.bnda({
 });
 
 var HP27sMonitorLayout = S.layout("hp27sMonitor", {
+  "Code" : {
+    "operations" : [putInMainContent],
+    "repeat" : true
+  },
   "Google Chrome" : {
+    "operations" : [putInMainContent],
+    "repeat" : true
+  },
+  "iTerm2" : {
     "operations" : [putInMainContent],
     "repeat" : true
   },
@@ -33,6 +41,10 @@ var HP27sMonitorLayout = S.layout("hp27sMonitor", {
     "repeat" : true
   },
   "Microsoft Teams" : {
+    "operations" : [putInMainContent],
+    "repeat" : true
+  },
+  "Skype" : {
     "operations" : [putInMainContent],
     "repeat" : true
   },
