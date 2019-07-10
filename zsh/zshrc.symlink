@@ -133,3 +133,6 @@ source /usr/local/etc/bash_completion.d/az
 
 # fix for 'Python crashes on macOS after fork with no exec' - https://bugs.python.org/issue33725
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# fix for flickering issues with external monitor for VS Code
+alias code="code --disable-gpu"
