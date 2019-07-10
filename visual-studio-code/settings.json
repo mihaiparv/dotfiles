@@ -19,7 +19,7 @@
   "extensions.ignoreRecommendations": false,
   "workbench.startupEditor": "newUntitledFile",
   "typescript.check.npmIsInstalled": false,
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.renderSideBySide": true,
   "editor.suggestSelection": "first",
   "workbench.sideBar.location": "left",
