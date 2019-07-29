@@ -30,7 +30,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 DEFAULT_USER=$USER
 POWERLEVEL9K_MODE="nerdfont-fontconfig"
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir custom_lastpass_status virtualenv vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir custom_lastpass_status custom_azure_status virtualenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time)
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -43,6 +43,23 @@ POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
 POWERLEVEL9K_CUSTOM_LASTPASS_STATUS="lpass status -q && echo -n \"\uf945\""
 POWERLEVEL9K_CUSTOM_LASTPASS_STATUS_BACKGROUND="red"
 POWERLEVEL9K_CUSTOM_LASTPASS_STATUS_FOREGROUND="white"
+
+# Custom segment to display Default Azure Subscription Name
+az_status(){
+  activeTokensCount=0
+  for i in $(jq < ~/.azure/accessTokens.json '.[] .expiresOn | split(".")[0] | strptime("%Y-%m-%d %H:%M:%S") | mktime')
+  do
+    if [[ $i -gt $(date +%s) ]]; then ((activeTokensCount=activeTokensCount+1)); fi
+  done
+  if [[ "$activeTokensCount" -gt 0 ]]
+  then
+    subscriptionName=$(jq < ~/.azure/azureProfile.json -r '.subscriptions[] | select(.isDefault == true) | .name')
+    echo -n "\ufd03 $subscriptionName"
+  fi
+}
+POWERLEVEL9K_CUSTOM_AZURE_STATUS="az_status"
+POWERLEVEL9K_CUSTOM_AZURE_STATUS_BACKGROUND="blue1"
+POWERLEVEL9K_CUSTOM_AZURE_STATUS_FOREGROUND="white"
 
 POWERLEVEL9K_STATUS_VERBOSE=false
 
