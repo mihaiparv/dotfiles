@@ -358,6 +358,9 @@ defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-ty
 # Add a spacer to the right side of the Dock (where the Trash is)
 defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
 
+# Disable "Show recent applications in Dock"
+defaults write com.apple.dock show-recents -bool false
+
 # Hot corners
 # Possible values:
 #  0: no-op
