@@ -19,12 +19,16 @@
   "extensions.ignoreRecommendations": false,
   "workbench.startupEditor": "newUntitledFile",
   "typescript.check.npmIsInstalled": false,
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.renderSideBySide": true,
   "editor.suggestSelection": "first",
   "workbench.sideBar.location": "left",
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.fontFamily": "Hack Nerd Font",
   "terminal.integrated.rightClickBehavior": "copyPaste",
-  "terminal.integrated.copyOnSelection": true
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.rendererType": "canvas",
+  "editor.minimap.enabled": false,
+  "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 12
 }
