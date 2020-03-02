@@ -10,8 +10,8 @@ DOTFILES_ROOT=$(pwd -P)
 configure () {
   mkdir -p ~/.ssh
   read_from_lastpass_to_file "iQuest\personal\ssh/config" "--notes" ~/.ssh/config "u=rw,go=r"
-  read_from_lastpass_to_file "iQuest\personal\ssh/mihai.parv@agilenetworks.tech" "--field=Private Key" ~/.ssh/mihai.parv@agilenetworks.tech "u=rw,go="
-  read_from_lastpass_to_file "iQuest\personal\ssh/mihai.parv@agilenetworks.tech" "--field=Public Key" ~/.ssh/mihai.parv@agilenetworks.tech.pub "u=rw,go="
+  read_from_lastpass_to_file "ANt\personal\ssh/mihai.parv@agilenetworks.tech" "--field=Private Key" ~/.ssh/mihai.parv@agilenetworks.tech "u=rw,go="
+  read_from_lastpass_to_file "ANt\personal\ssh/mihai.parv@agilenetworks.tech" "--field=Public Key" ~/.ssh/mihai.parv@agilenetworks.tech.pub "u=rw,go="
   read_from_lastpass_to_file "personal\ssh/mihai.parv@gmail.com" "--field=Private Key" ~/.ssh/mihai.parv@gmail.com "u=rw,go="
   read_from_lastpass_to_file "personal\ssh/mihai.parv@gmail.com" "--field=Public Key" ~/.ssh/mihai.parv@gmail.com.pub "u=rw,go="
   read_from_lastpass_to_file "personal\ssh/mihai.parv@yahoo.com" "--field=Private Key" ~/.ssh/mihai.parv@yahoo.com "u=rw,go="
