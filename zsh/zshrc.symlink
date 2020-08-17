@@ -175,7 +175,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # custom bash completions
 autoload bashcompinit && bashcompinit
-source /usr/local/etc/bash_completion.d/az
 
 # fix for 'Python crashes on macOS after fork with no exec' - https://bugs.python.org/issue33725
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
