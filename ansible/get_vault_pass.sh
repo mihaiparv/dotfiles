@@ -19,7 +19,7 @@ read_ansible_vault_pass_from_keychain () {
 }
 
 read_ansible_vault_pass_from_lastpass () {
-  lpass show "${ANSIBLE_VAULT_PASS_LPASS_ENTRY:-"Shared-IQ-CI/Ansible Vault Passwords/iqdvop vault"}" "${ANSIBLE_VAULT_PASS_LPASS_FIELD:-"--note"}" -q
+  lpass show "${ANSIBLE_VAULT_PASS_LPASS_ENTRY:-"ANt\\Ansible Vault Passwords/internal"}" "${ANSIBLE_VAULT_PASS_LPASS_FIELD:-"--note"}" -q
 }
 
 configureAnsibleVaultLPassEntry
