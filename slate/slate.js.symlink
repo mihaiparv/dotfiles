@@ -21,6 +21,7 @@ S.bnda({
   "up:ctrl;cmd" : fullscreen,
   "down:ctrl;cmd": pushDown,
   "pad2:ctrl;cmd" : putInMainContent,
+  "2:ctrl;cmd" : putInMainContent,
 });
 
 var HP27sMonitorLayout = S.layout("hp27sMonitor", {
