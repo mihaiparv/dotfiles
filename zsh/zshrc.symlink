@@ -56,7 +56,7 @@ DEFAULT_USER=$USER
 POWERLEVEL9K_MODE="nerdfont-fontconfig"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir custom_lastpass_status virtualenv nvm vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status custom_okd_status custom_azure_status command_execution_time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status custom_azure_status command_execution_time)
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="↳ "
@@ -146,7 +146,7 @@ POWERLEVEL9K_VIRTUALENV_BACKGROUND='springgreen3'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew docker git oc vagrant virtualenv virtualenvwrapper)
+plugins=(brew docker git kubectl minikube oc terraform terragrunt vagrant virtualenv virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
