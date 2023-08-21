@@ -182,3 +182,8 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # fix for flickering issues with external monitor for VS Code
 alias code="code --disable-gpu"
+
+# If a pattern for filename generation has no matches, print an error, instead of leaving it 
+# unchanged in the argument list. This also applies to file expansion of an initial ~ or =.
+# https://zsh.sourceforge.io/Doc/Release/Options.html#index-NOMATCH
+unsetopt nomatch
