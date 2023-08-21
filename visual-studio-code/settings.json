@@ -1,7 +1,7 @@
 // Place your settings in this file to overwrite the default settings
 {
   "editor.cursorStyle": "block",
-  "editor.renderIndentGuides": true,
+  "editor.guides.indentation": true,
   "editor.renderWhitespace": "boundary",
   "editor.renderControlCharacters": true,
   "editor.scrollBeyondLastLine": false,
@@ -10,16 +10,16 @@
   "editor.mouseWheelZoom": true,
   "files.autoSave": "afterDelay",
   "files.associations": {
-      "Jenkinsfile": "groovy",
-      "Vagrantfile": "ruby"
+    "Jenkinsfile": "groovy",
+    "Vagrantfile": "ruby",
+    "*.tftpl": "terraform"
   },
   "git.confirmSync": false,
-  "window.zoomLevel": 0,
   "workbench.colorTheme": "Solarized Dark",
   "extensions.ignoreRecommendations": false,
   "workbench.startupEditor": "newUntitledFile",
   "typescript.check.npmIsInstalled": false,
-  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.renderSideBySide": true,
   "editor.suggestSelection": "first",
   "workbench.sideBar.location": "left",
@@ -27,8 +27,23 @@
   "terminal.integrated.fontFamily": "Hack Nerd Font",
   "terminal.integrated.rightClickBehavior": "copyPaste",
   "terminal.integrated.copyOnSelection": true,
-  "terminal.integrated.rendererType": "canvas",
-  "editor.minimap.enabled": false,
+  "editor.minimap.enabled": true,
   "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontSize": 12
+  "editor.fontSize": 12,
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "gitlens.advanced.similarityThreshold": 50,
+  "redhat.telemetry.enabled": false,
+  "workbench.editor.enablePreview": false,
+  "window.commandCenter": true,
+  "vs-kubernetes": {
+    "vs-kubernetes.minikube-show-information-expiration": "2023-05-09T17:35:01.389Z"
+  },
+  "[python]": {
+    "editor.formatOnType": true
+  },
 }
