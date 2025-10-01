@@ -109,8 +109,6 @@ cask "openscad"
 cask "orcaslicer"
 # Free and open source media center
 cask "osmc"
-# G-code generator for 3D printers (RepRap, Makerbot, Ultimaker etc.)
-cask "prusaslicer"
 # Imaging utility to install operating systems to a microSD card
 cask "raspberry-pi-imager"
 # Centralises all remote connections on a single platform
