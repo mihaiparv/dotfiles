@@ -1,7 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
   "editor.cursorStyle": "block",
-  "editor.renderIndentGuides": true,
   "editor.renderWhitespace": "boundary",
   "editor.renderControlCharacters": true,
   "editor.scrollBeyondLastLine": false,
@@ -26,5 +25,24 @@
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.fontFamily": "Hack Nerd Font",
   "terminal.integrated.rightClickBehavior": "copyPaste",
-  "terminal.integrated.copyOnSelection": true
+  "terminal.integrated.copyOnSelection": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "workbench.iconTheme": null,
+  "editor.guides.indentation": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "ansible.validation.lint.enabled": false,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
 }
