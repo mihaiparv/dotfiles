@@ -14,7 +14,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "/usr/local/etc/bash_completion.d/nvm" ] && . "/usr/local/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # call nvm use automatically whenever you enter a directory that contains an .nvmrc file
 autoload -U add-zsh-hook
@@ -183,9 +183,6 @@ autoload bashcompinit && bashcompinit
 
 # fix for 'Python crashes on macOS after fork with no exec' - https://bugs.python.org/issue33725
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-# fix for flickering issues with external monitor for VS Code
-alias code="code --disable-gpu"
 
 # If a pattern for filename generation has no matches, print an error, instead of leaving it 
 # unchanged in the argument list. This also applies to file expansion of an initial ~ or =.
