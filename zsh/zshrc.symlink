@@ -72,15 +72,11 @@ POWERLEVEL9K_CUSTOM_LASTPASS_STATUS_FOREGROUND="white"
 
 # Custom segment to display Default Azure Subscription Name
 az_status(){
-  activeTokensCount=0
-  for i in $(jq < ~/.azure/accessTokens.json '.[] .expiresOn | split(".")[0] | strptime("%Y-%m-%d %H:%M:%S") | mktime')
-  do
-    if [[ $i -gt $(date +%s) ]]; then ((activeTokensCount=activeTokensCount+1)); fi
-  done
-  if [[ "$activeTokensCount" -gt 0 ]]
+  accountInfo=$(az account show 2> /dev/null)
+  if [[ "$?" == 0 ]]
   then
-    subscriptionName=$(jq < ~/.azure/azureProfile.json -r '.subscriptions[] | select(.isDefault == true) | .name')
-    echo -n "\ufd03 $subscriptionName"
+    subscriptionName=$(echo $accountInfo | jq -r '.name')
+    echo -n "\UF0805 $subscriptionName"
   fi
 }
 POWERLEVEL9K_CUSTOM_AZURE_STATUS="az_status"
