@@ -57,7 +57,7 @@ DEFAULT_USER=$USER
 POWERLEVEL9K_MODE="nerdfont-fontconfig"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir custom_lastpass_status virtualenv nvm vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status custom_azure_status command_execution_time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status custom_kube_ps1 command_execution_time)
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="↳ "
@@ -86,6 +86,14 @@ POWERLEVEL9K_CUSTOM_AZURE_STATUS_FOREGROUND="white"
 POWERLEVEL9K_CUSTOM_OKD_STATUS="oc whoami --request-timeout=100ms &>/dev/null && echo -n \"\ue7b7 \" && oc whoami -c"
 POWERLEVEL9K_CUSTOM_OKD_STATUS_BACKGROUND="red"
 POWERLEVEL9K_CUSTOM_OKD_STATUS_FOREGROUND="white"
+
+KUBE_PS1_SYMBOL_PADDING=true
+KUBE_PS1_NS_ENABLE=false
+KUBE_PS1_PREFIX=
+KUBE_PS1_SUFFIX=
+KUBE_PS1_SEPARATOR=
+POWERLEVEL9K_CUSTOM_KUBE_PS1='kube_ps1'
+POWERLEVEL9K_CUSTOM_KUBE_PS1_BACKGROUND="springgreen1"
 
 POWERLEVEL9K_STATUS_VERBOSE=false
 
@@ -143,7 +151,7 @@ POWERLEVEL9K_VIRTUALENV_BACKGROUND='springgreen3'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew docker docker-compose git kubectl minikube terraform vagrant virtualenv virtualenvwrapper)
+plugins=(brew docker docker-compose gcloud git kubectl kube-ps1 terraform vagrant virtualenv virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
