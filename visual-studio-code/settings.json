@@ -45,4 +45,8 @@
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+  "application.shellEnvironmentResolutionTimeout": 20,
+  "python.defaultInterpreterPath": "/usr/local/bin/python3",
+  "ansible.lightspeed.suggestions.enabled": false,
+  "ansible.lightspeed.enabled": false,
 }
