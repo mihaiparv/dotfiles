@@ -1,0 +1,29 @@
+- defaults:
+    link:
+      relink: true
+    shell:
+      stdout: true
+      stderr: true
+
+
+- clean: ['~']
+
+- link:
+    ~/.config/hypr/:
+      glob: true
+      force: true
+      path: config/hypr/*
+    ~/.lpass/env:
+      create: true
+      path: lpass/env
+
+- shell:
+  # Installs
+  - command: ./omarchy/install-packages-set-defaults.sh
+    description: Install Omarchy packages and set defaults
+  # Configs
+  - command: ./config/configure-apple-keyboard.sh
+    description: Configure Macbook Pro Apple Keyboard (see https://wiki.archlinux.org/title/Apple_Keyboard)
+  - command: ./ssh/configure.sh
+    description: Configure ssh
+    stdin: true
