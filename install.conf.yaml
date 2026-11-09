@@ -9,6 +9,9 @@
 - clean: ['~']
 
 - link:
+    ~/.config/starship.toml:
+      force: true
+      path: config/starship.toml
     ~/.config/ghostty/:
       glob: true
       force: true
