@@ -9,6 +9,10 @@
 - clean: ['~']
 
 - link:
+    ~/.config/ghostty/:
+      glob: true
+      force: true
+      path: config/ghostty/*
     ~/.config/hypr/:
       glob: true
       force: true
