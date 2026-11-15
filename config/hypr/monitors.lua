@@ -7,4 +7,4 @@ hl.env("GDK_SCALE", tostring(omarchy_gdk_scale))
 
 -- Configure specific monitors.
 hl.monitor({ output = "eDP-1", mode = "preferred", position = "auto", scale = 2 })
-hl.monitor({ output = "DP-1", mode = "preferred", position = "auto-center-up", scale = 1.6 })
+hl.monitor({ output = "desc:HP Inc. HP Z27k G3 CN42130VQ6", mode = "preferred", position = "auto-center-up", scale = 1.6 })
