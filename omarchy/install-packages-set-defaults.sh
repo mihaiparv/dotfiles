@@ -10,4 +10,4 @@ omarchy pkg present vscode || ( omarchy install editor vscode && omarchy default
 
 # utilities
 omarchy pkg present keychain || ( omarchy pkg add keychain )
-omarchy pkg present lastpass-cli || ( omarchy pkg add lastpass-cli )
+omarchy pkg present lastpass-cli || ( omarchy pkg aur add lastpass-cli )
