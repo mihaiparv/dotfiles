@@ -31,6 +31,8 @@
   # Configs
   - command: ./config/configure-apple-keyboard.sh
     description: Configure Macbook Pro Apple Keyboard (see https://wiki.archlinux.org/title/Apple_Keyboard)
+  - command: ./omarchy/fix-for-internal-keyboard-not-working-LUKS-unlock.sh
+    description: Apply fix for T2 MacBook and internal keyboard use at LUKS unlock
   - command: ./ssh/configure.sh
     description: Configure ssh
     stdin: true
